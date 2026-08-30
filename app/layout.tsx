@@ -1,25 +1,19 @@
 
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 
 const businessName = "پرس شیلنگ مسافر";
+const siteUrl = "https://mosaferhose.ir";
 
 const description =
-  "پرس شیلنگ مسافر در ارومیه؛ ارائه خدمات تخصصی پرس، ساخت، تعویض و تعمیر شیلنگ هیدرولیک و پنوماتیک، تأمین شیلنگ و اتصالات و خدمات مرتبط با ماشین‌آلات صنعتی، کشاورزی و راه‌سازی.";
+  "پرس شیلنگ مسافر در ارومیه؛ خدمات تخصصی پرس، ساخت، تعویض و تعمیر شیلنگ هیدرولیک و پنوماتیک، تأمین شیلنگ و اتصالات و خدمات مرتبط با ماشین‌آلات صنعتی، کشاورزی و راه‌سازی.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mosaferhose.ir"),
+  metadataBase: new URL(siteUrl),
 
   title: "پرس شیلنگ مسافر | پرس شیلنگ در ارومیه",
 
   description,
-
-  icons: {
-    icon: "/icon.jpg",
-    shortcut: "/icon.jpg",
-    apple: "/icon.jpg",
-  },
 
   keywords: [
     "پرس شیلنگ ارومیه",
@@ -41,24 +35,53 @@ export const metadata: Metadata = {
     },
   ],
 
+  creator: businessName,
+  publisher: businessName,
+
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
+  alternates: {
+    canonical: siteUrl,
+  },
+
+  icons: {
+    icon: "/images/logo.jpg",
+    shortcut: "/images/logo.jpg",
+    apple: "/images/logo.jpg",
   },
 
   openGraph: {
+    type: "website",
+    locale: "fa_IR",
+    url: siteUrl,
+    siteName: businessName,
     title: "پرس شیلنگ مسافر | پرس شیلنگ در ارومیه",
     description,
-    url: "https://mosaferhose.ir",
-    siteName: businessName,
-    locale: "fa_IR",
-    type: "website",
+    images: [
+      {
+        url: "/images/logo.jpg",
+        width: 512,
+        height: 512,
+        alt: businessName,
+      },
+    ],
   },
 
   twitter: {
     card: "summary",
     title: "پرس شیلنگ مسافر | پرس شیلنگ در ارومیه",
     description,
+    images: ["/images/logo.jpg"],
   },
 };
 
@@ -69,55 +92,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body>
-        <Script
-          id="business-schema"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: businessName,
-              description,
-              url: "https://mosaferhose.ir",
-              telephone: "+984432382448",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "کوی یکطرفه، خیابان پزشکیان، طبقه همکف",
-                addressLocality: "ارومیه",
-                addressRegion: "آذربایجان غربی",
-                addressCountry: "IR",
-              },
-              areaServed: {
-                "@type": "City",
-                name: "ارومیه",
-              },
-              openingHoursSpecification: [
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                    "Sunday",
-                  ],
-                  opens: "08:00",
-                  closes: "20:00",
-                },
-              ],
-              sameAs: [
-                "https://maps.app.goo.gl/w1cCio1QEbvx73Mj9",
-              ],
-            }),
-          }}
-        />
-
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
