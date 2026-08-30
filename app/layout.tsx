@@ -13,7 +13,9 @@ export const metadata: Metadata = {
   title: "پرس شیلنگ مسافر | پرس شیلنگ در ارومیه",
 
   description,
-
+icons: {
+  icon: "/images/logo.jpg",
+},
   keywords: [
     "پرس شیلنگ ارومیه",
     "پرس شیلنگ در ارومیه",
